@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <div class="form-group">
-        <label for="tags">Tags: </label>
+        <label for="tags">Tags</label>
         <input type="text" class="form-control" id="tags">
         <button type="button" id="btnClear">clear</button>
     </div>
@@ -37,7 +37,7 @@
             },
             select: function (event, ui) {
                 $('.box').append(ui.item.value.replaceAll(': ', '\r\n')).append('\r\n\r\n');
-                ui.item.value = '';
+                this.value = "";
                 return false;
             }
         });
