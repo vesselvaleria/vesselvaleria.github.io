@@ -37,6 +37,7 @@
             },
             select: function (event, ui) {
                 $('.box').append(ui.item.value.replaceAll(': ', '\r\n')).append('\r\n\r\n');
+                ui.item.value = '';
                 return false;
             }
         });
