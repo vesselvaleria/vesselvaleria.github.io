@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta charset="UTF-8"/>
+    <title>translate01</title>
+</head>
+<body>
+<div class="container">
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <input type="text" class="form-control" id="tags">
+        <button type="button" id="btnClear">clear</button>
+    </div>
+    <pre class="box"></pre>
+</div>
+<link rel="stylesheet" href="style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    let items = [];
+    $(function () {
+        $("#btnClear").on("click", function () {
+            $('.box').text("");
+        });
+    });
+    $.getJSON("dict.json", function (data) {
+        $.each(data, function (i, value) {
+            items.push(value);
+        });
+    });
+    $(function () {
+        $("#tags").autocomplete({
+            source: items,
+            select: function (event, ui) {
+                $('.box').append(ui.item.value.replaceAll(': ', '\r\n')).append('\r\n');
+                return false;
+            }
+        });
+    });
+</script>
+</body>
+</html>
