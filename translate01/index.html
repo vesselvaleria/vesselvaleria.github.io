@@ -31,7 +31,10 @@
     });
     $(function () {
         $("#tags").autocomplete({
-            source: items,
+            source: function (request, response) {
+                let results = $.ui.autocomplete.filter(items, request.term);
+                response(results.slice(0, 10));
+            },
             select: function (event, ui) {
                 $('.box').append(ui.item.value.replaceAll(': ', '\r\n')).append('\r\n');
                 return false;
